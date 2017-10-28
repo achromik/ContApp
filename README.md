@@ -2,7 +2,7 @@
 
 *Simply Phone Book for Desktops*
 
-Based on Electron (Electon Quick Start), React, Bootstrap v4
+Based on Electron [Electon Quick Start](https://github.com/electron/electron-quick-start), React, Bootstrap v4
 
 Features:
 - add contacts
