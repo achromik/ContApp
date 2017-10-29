@@ -42,10 +42,9 @@ class ContactForm extends React.Component {
 
     isSubmitDisabled(event) {
         this.setState({
-            isSubmitDisabled: !(this.nameInput.value.trim() !== '' && this.phoneInput.value.trim()) 
+            isSubmitDisabled: !(this.nameInput.value.trim() !== '' &&  validatePhoneNumber(this.phoneInput.value)) 
         });
     }
-    
 
     render() {
         return (
@@ -54,23 +53,49 @@ class ContactForm extends React.Component {
                     <form onChange={this.isSubmitDisabled}>
                         <div className="form-group">
                             <label>Name:</label>
-                            <input className="form-control" onChange={(event) => this.onChangeHandler('name', event.target.value)} value={ this.state.user.name } ref={(input) => this.nameInput = input} />
+                            <input className = "form-control" 
+                                onChange = {(event) => this.onChangeHandler('name', event.target.value)} 
+                                value = {this.state.user.name} 
+                                ref = {(input) => this.nameInput = input} 
+                            />
                         </div>
                         <div className="form-group">
                             <label>Surname:</label>
-                            <input className="form-control" onChange={(event) => this.onChangeHandler('surname', event.target.value)} value={ this.state.user.surname } />
+                            <input className="form-control" 
+                                onChange={(event) => this.onChangeHandler('surname', event.target.value)} 
+                                value={ this.state.user.surname } 
+                            />
                         </div>
                         <div className="form-group">
                             <label>Phone:</label>
-                            <input className="form-control" onChange={(event) => this.onChangeHandler('phone', event.target.value)} value={ this.state.user.phone } ref={(input) => this.phoneInput = input}/>
+                            <input className="form-control" 
+                                type="text" 
+                                pattern='[\+]\d{2,3}[\s]\d{3,5}[\s]\d{3,5}[\s]\d{3,5}'  /* dosent work on Electron */
+                                onChange={(event) => this.onChangeHandler('phone', event.target.value)} 
+                                value={ this.state.user.phone } 
+                                ref={(input) => this.phoneInput = input}
+                            />
                         </div>
-                        <button className="btn btn-success" onClick={(event) => this.onSuccessHandler(event)} disabled={this.state.isSubmitDisabled}>Save</button>
-                        <hr />
+                        <button className="btn btn-success" 
+                            onClick={(event) => this.onSuccessHandler(event)} 
+                            disabled={this.state.isSubmitDisabled}
+                        >
+                            Save
+                        </button>
                     </form>
                 </fieldset>
+                <hr />
             </div>
         );
     }
-}
+};
+
+function validatePhoneNumber(phoneNumber) {
+    var reg = new RegExp(/[\+]\d{2,3}[\s]\d{3,5}[\s]\d{3,5}[\s]\d{3,5}/);
+    if(!reg.test(phoneNumber)) 
+        return false;
+    else
+        return true;
+};
 
 export default ContactForm;

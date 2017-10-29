@@ -6,11 +6,11 @@ Based on Electron [Electon Quick Start](https://github.com/electron/electron-qui
 
 Features:
 - add contacts
+- delete contact
 - read/write contacts list from file
 
 Todo:
 - edit contact
-- remove contact
 - sort contacts
 
 

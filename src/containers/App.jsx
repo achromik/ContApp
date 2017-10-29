@@ -3,48 +3,52 @@ import ContactForm from '../components/ContactForm';
 import ContactList from '../components/ContactList';
 
 const fs = require('fs');
+const config = require('../config');
+const contactFile = config.DATA_FILE;
+const dataFolder = config.DATA_FOLDER;
+const filePath = './' + dataFolder + '/' + contactFile;
 
-const contactFile = './contacts.json';
-let contacts = [];
 
 
 class App extends React.Component {
     constructor(props) {
         super(props);
-
         this.state = {
-            currentUser: [],
+            contactsList: [],
             currentId: 1
         };
 
         this.onContactFormSuccess = this.onContactFormSuccess.bind(this);
+        this.removeContact = this.removeContact.bind(this);
     }
 
     componentWillMount() {
-        //check if file whit contacts exist
-        if (fs.existsSync(contactFile)) { 
+        //if file whit contacts exist load contacts from file
+        if (fs.existsSync( filePath)) { 
             try{ 
-                contacts = JSON.parse(fs.readFileSync(contactFile, 'utf-8'));
+                let contacts = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
                 this.setState({
-                    currentId: contacts[contacts.length-1].id+1
+                    contactsList: contacts,
+                    currentId: contacts[contacts.length - 1].id + 1
                 })
-                console.log(contacts[contacts.length-1].id +' current id ' + this.state.currentId);
-            
             }
             catch(e) { console.log(e);}
-        } 
+        } else {
+            //create empty data file
+            fs.mkdirSync('./' + dataFolder);
+            fs.openSync(filePath, 'w');
+        }
     }
 
     onContactFormSuccess(event, user) {
         event.preventDefault();        
+        let contacts = this.state.contactsList;
         contacts.push(user);
-
         this.setState({
-            currentUser: user,
+            contactsList: contacts
         });
-
         try { 
-            fs.writeFileSync(contactFile, JSON.stringify(contacts, null, '\t'), 'utf-8'); 
+            fs.writeFileSync(filePath, JSON.stringify(contacts, null, '\t'), 'utf-8'); 
         }
         catch(e) { 
             alert('Failed to save the file !'); 
@@ -52,11 +56,27 @@ class App extends React.Component {
         }
     }
 
+    removeContact (id) {
+        console.log(id);
+        let remainderContacts = this.state.contactsList.filter((item) => {return item.id !== id});
+        console.log(remainderContacts);
+        try { 
+            fs.writeFileSync(filePath, JSON.stringify(remainderContacts, null, '\t'), 'utf-8'); 
+        }
+        catch(e) { 
+            alert('Failed to save the file !'); 
+            console.error(e);
+        }
+        this.setState({
+            contactsList: remainderContacts
+        });
+    }
+
     render() {
         return (
             <div>
-                <ContactForm id={this.state.currentId} onSuccess={ this.onContactFormSuccess } />
-                <ContactList users={contacts} newUser={this.state.currentUser}/>
+                <ContactForm id={this.state.currentId}  onSuccess={ this.onContactFormSuccess } />
+                <ContactList removeContact={this.removeContact} users={this.state.contactsList} />
             </div>
         );
     }
