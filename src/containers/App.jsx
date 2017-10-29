@@ -57,9 +57,7 @@ class App extends React.Component {
     }
 
     removeContact (id) {
-        console.log(id);
         let remainderContacts = this.state.contactsList.filter((item) => {return item.id !== id});
-        console.log(remainderContacts);
         try { 
             fs.writeFileSync(filePath, JSON.stringify(remainderContacts, null, '\t'), 'utf-8'); 
         }

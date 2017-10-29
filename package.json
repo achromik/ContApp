@@ -28,6 +28,7 @@
     "babel-register": "^6.26.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "sweetalert": "^2.0.8",
     "uuid4": "^1.0.0"
   }
 }
