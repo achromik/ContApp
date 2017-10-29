@@ -74,11 +74,13 @@ class ContactForm extends React.Component {
                                 onChange={(event) => this.onChangeHandler('phone', event.target.value)} 
                                 value={ this.state.user.phone } 
                                 ref={(input) => this.phoneInput = input}
+                                placeholder="+12 123 123 123 or 32-456-27-89 or 1234567890"
                             />
                         </div>
                         <button className="btn btn-success" 
                             onClick={(event) => this.onSuccessHandler(event)} 
                             disabled={this.state.isSubmitDisabled}
+                            
                         >
                             Save
                         </button>
@@ -91,7 +93,12 @@ class ContactForm extends React.Component {
 };
 
 function validatePhoneNumber(phoneNumber) {
-    var reg = new RegExp(/[\+]\d{2,3}[\s]\d{3,5}[\s]\d{3,5}[\s]\d{3,5}/);
+    /* phone number i.e. +12 123 123 123   
+       or +123 12345 12345 12345    */    
+    // var reg = new RegExp(/[\+]\d{2,3}[\s]\d{3,5}[\s]\d{3,5}[\s]\d{3,5}/);    
+                                                                                
+
+    var reg = new RegExp(/[\+]*\d{1,3}([\s\|\-]\d{2,3}){3,4}|\d{8,13}/);
     if(!reg.test(phoneNumber)) 
         return false;
     else

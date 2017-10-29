@@ -7,10 +7,10 @@ class ContactList extends React.Component {
         const contacts = this.props.users.map((user, id) => <Contact removeContact={this.props.removeContact} id={id} key={id} user={user} />);
         return (
             <div className="contact-list">
-                <h2>Contact list</h2>
-                <ul className="list-group">
+                <h2 className="text-center">Contact list</h2>
+                <div className="list-group">
                     { contacts }
-                </ul>
+                </div>
             </div>
         );
     }
