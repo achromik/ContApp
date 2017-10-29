@@ -64,7 +64,7 @@ class ContactForm extends React.Component {
                             <label>Phone:</label>
                             <input className="form-control" onChange={(event) => this.onChangeHandler('phone', event.target.value)} value={ this.state.user.phone } ref={(input) => this.phoneInput = input}/>
                         </div>
-                        <button onClick={(event) => this.onSuccessHandler(event)} disabled={this.state.isSubmitDisabled}>Save</button>
+                        <button className="btn btn-success" onClick={(event) => this.onSuccessHandler(event)} disabled={this.state.isSubmitDisabled}>Save</button>
                         <hr />
                     </form>
                 </fieldset>

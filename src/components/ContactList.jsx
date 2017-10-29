@@ -19,7 +19,7 @@ class ContactList extends React.Component {
     // }
 
     render() { 
-        const contacts = this.state.users.map(user => <Contact key={uuid()} user={user} />);
+        const contacts = this.state.users.map((user, id) => <Contact id={id}  key={uuid()} user={user} />);
         console.log(JSON.stringify(this.props.users));
         return (
             <div className="contact-list">
