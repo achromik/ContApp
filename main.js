@@ -119,7 +119,8 @@ app.on('activate', function () {
 
 function openFile () {
 	const files = dialog.showOpenDialog(mainWindow, {
-		properties: ['openFile']
+		properties: ['openFile'],
+		defaultPath: __dirname + '/example/'
 	})
 
 	if (!files) return

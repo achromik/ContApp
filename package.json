@@ -4,7 +4,8 @@
   "description": "A simply Phone-book for desktops",
   "main": "main.js",
   "scripts": {
-    "start": "electron --enable-logging -r babel-register ."
+    "start": "electron -r babel-register .",
+    "log": "electron --enable-logging -r babel-register ."
   },
   "repository": "https://github.com/achromik/ContApp.git",
   "keywords": [
