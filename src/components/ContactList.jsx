@@ -9,7 +9,9 @@ class ContactList extends React.Component {
             <div className="contact-list">
                 <h2 className="text-center">Contact list</h2>
                 <div className="list-group">
-                    { contacts }
+                    <div className="list-group-box">
+                        { contacts }
+                    </div>
                 </div>
             </div>
         );

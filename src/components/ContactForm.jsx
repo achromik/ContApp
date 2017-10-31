@@ -1,4 +1,5 @@
 import React from 'react';
+import uuidv1 from 'uuid/v1'
 
 class ContactForm extends React.Component {
     constructor(props) {
@@ -6,7 +7,7 @@ class ContactForm extends React.Component {
 
         this.state = {
              user: {
-                id: this.props.id,
+                id: uuidv1(),
                 name: '',
                 surname: '',
                 phone: ''
@@ -48,10 +49,10 @@ class ContactForm extends React.Component {
 
     render() {
         return (
-            <div className="contact-form">
+            <div className = "contact-form">
                 <fieldset>
-                    <form onChange={this.isSubmitDisabled}>
-                        <div className="form-group">
+                    <form onChange = {this.isSubmitDisabled}>
+                        <div className = "form-group">
                             <label>Name:</label>
                             <input className = "form-control" 
                                 onChange = {(event) => this.onChangeHandler('name', event.target.value)} 
@@ -59,34 +60,33 @@ class ContactForm extends React.Component {
                                 ref = {(input) => this.nameInput = input} 
                             />
                         </div>
-                        <div className="form-group">
+                        <div className = "form-group">
                             <label>Surname:</label>
-                            <input className="form-control" 
-                                onChange={(event) => this.onChangeHandler('surname', event.target.value)} 
-                                value={ this.state.user.surname } 
+                            <input className = "form-control" 
+                                onChange = {(event) => this.onChangeHandler('surname', event.target.value)} 
+                                value = {this.state.user.surname} 
                             />
                         </div>
-                        <div className="form-group">
+                        <div className = "form-group">
                             <label>Phone:</label>
-                            <input className="form-control" 
-                                type="text" 
-                                pattern='[\+]\d{2,3}[\s]\d{3,5}[\s]\d{3,5}[\s]\d{3,5}'  /* dosent work on Electron */
-                                onChange={(event) => this.onChangeHandler('phone', event.target.value)} 
-                                value={ this.state.user.phone } 
-                                ref={(input) => this.phoneInput = input}
-                                placeholder="+12 123 123 123 or 32-456-27-89 or 1234567890"
+                            <input className = "form-control" 
+                                type = "text" 
+                                pattern = '[\+]\d{2,3}[\s]\d{3,5}[\s]\d{3,5}[\s]\d{3,5}'  /* dosent work on Electron */
+                                onChange = {(event) => this.onChangeHandler('phone', event.target.value)} 
+                                value = {this.state.user.phone} 
+                                ref = {(input) => this.phoneInput = input}
+                                placeholder = "+12 123 123 123 or 32-456-27-89 or 1234567890"
                             />
                         </div>
-                        <button className="btn btn-success" 
-                            onClick={(event) => this.onSuccessHandler(event)} 
-                            disabled={this.state.isSubmitDisabled}
+                        <button className = "btn btn-success" 
+                            onClick = {(event) => this.onSuccessHandler(event)} 
+                            disabled = {this.state.isSubmitDisabled}
                             
                         >
-                            Save
+                            Add contact
                         </button>
                     </form>
                 </fieldset>
-                <hr />
             </div>
         );
     }

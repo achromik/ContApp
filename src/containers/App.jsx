@@ -3,41 +3,65 @@ import ContactForm from '../components/ContactForm';
 import ContactList from '../components/ContactList';
 
 const fs = require('fs');
+const path = require('path');
 const config = require('../config');
 const contactFile = config.DATA_FILE;
 const dataFolder = config.DATA_FOLDER;
-const filePath = './' + dataFolder + '/' + contactFile;
+let filePath = './' + dataFolder + '/' + contactFile;
 
+const electron = require('electron')
+
+const remote = electron.remote
+const mainProcess = remote.require('./main')
+const ipc = electron.ipcRenderer
 
 
 class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            contactsList: [],
-            currentId: 1
+            contactsList: []
         };
 
         this.onContactFormSuccess = this.onContactFormSuccess.bind(this);
         this.removeContact = this.removeContact.bind(this);
     }
 
-    componentWillMount() {
+    componentDidMount() {
+        ipc.on('file-opened', (event, file, content) => {
+            let contacts = JSON.parse(content);
+            filePath = file;
+            
+            this.setState({
+                contactsList: contacts
+            })  
+            
+        })
+
+        ipc.on('save-file', (event) => {
+            const contacts = JSON.stringify(this.state.contactsList, null, '\t')
+            
+            mainProcess.saveAsFile(contacts)
+        })
+        
+           
+        
         //if file whit contacts exist load contacts from file
-        if (fs.existsSync( filePath)) { 
-            try{ 
-                let contacts = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
-                this.setState({
-                    contactsList: contacts,
-                    currentId: contacts[contacts.length - 1].id + 1
-                })
-            }
-            catch(e) { console.log(e);}
-        } else {
-            //create empty data file
-            fs.mkdirSync('./' + dataFolder);
-            fs.openSync(filePath, 'w');
-        }
+
+        // if (fs.existsSync( filePath)) { 
+        //     try{ 
+        //         let contacts = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+        //         this.setState({
+        //             contactsList: contacts,
+        //             currentId: contacts[contacts.length - 1].id + 1
+        //         })
+        //     }
+        //     catch(e) { console.log(e);}
+        // } else {
+        //     //create empty data file
+        //     fs.mkdirSync('./' + dataFolder);
+        //     fs.openSync(filePath, 'w');
+        // }
     }
 
     onContactFormSuccess(event, user) {
@@ -73,7 +97,7 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <ContactForm id={this.state.currentId}  onSuccess={ this.onContactFormSuccess } />
+                <ContactForm onSuccess={ this.onContactFormSuccess } />
                 <ContactList removeContact={this.removeContact} users={this.state.contactsList} />
             </div>
         );

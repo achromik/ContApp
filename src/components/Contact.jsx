@@ -2,7 +2,7 @@ import React from 'react';
 import swal from 'sweetalert';
 
 const Contact = (props) => (
-    <div className={'list-group-item list-group-item-action list-group-item-' + (props.id % 2 === 1 ? 'secondary': 'primary')} 
+    <div className={'list-group-item list-group-item-action list-group-item-' + (props.id % 2 === 1 ? 'secondary': 'dark')} 
         onClick={() =>{ 
             swal({
                 title: 'Are you sure?',

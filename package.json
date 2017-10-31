@@ -4,7 +4,7 @@
   "description": "A simply Phone-book for desktops",
   "main": "main.js",
   "scripts": {
-    "start": "electron -r babel-register ."
+    "start": "electron --enable-logging -r babel-register ."
   },
   "repository": "https://github.com/achromik/ContApp.git",
   "keywords": [
@@ -29,6 +29,6 @@
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "sweetalert": "^2.0.8",
-    "uuid4": "^1.0.0"
+    "uuid": "^3.1.0"
   }
 }

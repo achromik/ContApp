@@ -8,10 +8,12 @@ Features:
 - add contacts
 - delete contact
 - read/write contacts list from file
+- add menu bar with option 'Open file' and 'Save file as...'
 
 Todo:
 - edit contact
 - sort contacts
+- export/inport vCard
 
 
 ## To Use

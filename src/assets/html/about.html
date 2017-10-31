@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../../../public/bootstrap/css/bootstrap.min.css">
+    <title>About</title>
+    <style>
+        body {
+            background: url('../img/about.jpg');
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="text-center text-light d-flex flex-column justify-content-center align-items-center p-5 " style="height: 100vh">
+        <h1>ContApp</h1>
+        <h5 class='badge badge-pill badge-info'>Version 0.0.2</h5>
+        <h5 class='mt-auto'>Aleksander Chromik<br/>
+        <a href='#' onClick="onClickHandler() " >aleksanderchromik.pl</a>
+        <h6>© 2017</h6>
+    </div>
+
+    <script>
+        function onClickHandler(event) {
+            const shell = require('electron').shell; 
+            event.preventDefault(); 
+            shell.openExternal('http://aleksanderchromik.pl');
+        }
+    </script>
+</body>
+</html>
