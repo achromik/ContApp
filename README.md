@@ -12,6 +12,7 @@ Features:
 Todo:
 - edit contact
 - sort contacts
+- and maybe more ;)
 
 
 ## To Use
