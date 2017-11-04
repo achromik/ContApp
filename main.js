@@ -152,7 +152,8 @@ function showAbout() {
 		height: 350, 
 		minWidth: 560, 
 		width: 560, 
-		titleBarStyle: 'hiddenInset'
+		titleBarStyle: 'hiddenInset',
+		center: 'true'
 	})
 
 	child.setMenu(null)
