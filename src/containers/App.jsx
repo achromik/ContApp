@@ -11,7 +11,7 @@ const path = require('path');
 const config = require('../config');
 const contactFile = config.DATA_FILE;
 const dataFolder = config.DATA_FOLDER;
-let filePath = './' + dataFolder + '/' + contactFile;
+let filePath;
 
 const electron = require('electron')
 
@@ -42,7 +42,11 @@ class App extends React.Component {
 
         ipc.on('save-file', (event) => {
             const contacts = JSON.stringify(this.state.contactsList, null, '\t')
-            mainProcess.saveFile(filePath, contacts)
+            if(fs.existsSync(filePath)) {
+                fs.writeSync(filePath, contacts); 
+            } else{             
+                mainProcess.saveAsFile(contacts)
+            }	
         })
 
         ipc.on('save-as-file', (event) => {
@@ -82,24 +86,24 @@ class App extends React.Component {
         this.setState({
             contactsList: contacts
         });
-        try { 
-            fs.writeFileSync(filePath, JSON.stringify(contacts, null, '\t'), 'utf-8'); 
-        }
-        catch(e) { 
-            alert('Failed to save the file !'); 
-            console.error(e);
-        }
+        // try { 
+        //     fs.writeFileSync(filePath, JSON.stringify(contacts, null, '\t'), 'utf-8'); 
+        // }
+        // catch(e) { 
+        //     alert('Failed to save the file !'); 
+        //     console.error(e);
+        // }
     }
 
     removeContact (id) {
         let remainderContacts = this.state.contactsList.filter((item) => {return item.id !== id});
-        try { 
-            fs.writeFileSync(filePath, JSON.stringify(remainderContacts, null, '\t'), 'utf-8'); 
-        }
-        catch(e) { 
-            alert('Failed to save the file !'); 
-            console.error(e);
-        }
+        // try { 
+        //     fs.writeFileSync(filePath, JSON.stringify(remainderContacts, null, '\t'), 'utf-8'); 
+        // }
+        // catch(e) { 
+        //     alert('Failed to save the file !'); 
+        //     console.error(e);
+        // }
         this.setState({
             contactsList: remainderContacts
         });
@@ -115,13 +119,13 @@ class App extends React.Component {
             }
             return user;
         });
-        try { 
-            fs.writeFileSync(filePath, JSON.stringify(newContactList, null, '\t'), 'utf-8'); 
-        }
-        catch(e) { 
-            alert('Failed to save the file !'); 
-            console.error(e);
-        }
+        // try { 
+        //     fs.writeFileSync(filePath, JSON.stringify(newContactList, null, '\t'), 'utf-8'); 
+        // }
+        // catch(e) { 
+        //     alert('Failed to save the file !'); 
+        //     console.error(e);
+        // }
         this.setState({
             contactsList: newContactList
         });

@@ -145,8 +145,12 @@ app.on('activate', function () {
 
 function openFile () {
 	const files = dialog.showOpenDialog(mainWindow, {
+		title: 'Open file',
 		properties: ['openFile'],
-		defaultPath: __dirname + '/example/'
+		defaultPath: __dirname + '/data',
+		filters: [
+			{name: 'JSON File', extensions: ['json']}
+		]
 	})
 
 	if (!files) return
@@ -160,24 +164,18 @@ function saveAsFile (content) {
 	const fileName = dialog.showSaveDialog(mainWindow, {
 		title: 'Save Contacts List',
 		//defaultPath: app.getPath(__dirname),
-		defaultPath: __dirname,
+		defaultPath: __dirname + '/data',
+		filters: [
+			{name: 'JSON file', extensions: ['json']}
+		]
 	})
 
-		if(!fileName) return
-	 
-		fs.writeFileSync(fileName, content)
-}
-
-function saveFile(fileName, content) {
-	if(fs.exists(fileName)) {
-		fs.writeSync(fileName, content); 
-	} else{
-		saveAsFile(content);
-	}	
+	if(!fileName) return
+	
+	fs.writeFileSync(fileName, content)
 }
 
 function showAbout() {
-
 	let child = new BrowserWindow({
 		parent: mainWindow, 
 		modal: true, 
@@ -207,8 +205,12 @@ function showAbout() {
 
 function importVCard () {
 	const files = dialog.showOpenDialog(mainWindow, {
+		title: 'Import a vCard file',
 		properties: ['openFile'],
-		defaultPath: __dirname + '/example/'
+		defaultPath: __dirname,
+		filters: [
+			{name: 'vCards', extensions: ['vcf']}
+		]
 	})
 
 	if (!files) return
@@ -219,4 +221,3 @@ function importVCard () {
 }
 
 exports.saveAsFile = saveAsFile;
-exports.saveFile = saveFile;
