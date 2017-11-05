@@ -45,6 +45,10 @@ class App extends React.Component {
             const contacts = JSON.stringify(this.state.contactsList, null, '\t')
             mainProcess.saveAsFile(contacts)
         })
+
+        ipc.on('import-vcard', (event, vCard) => {
+            console.log(vCard.stringify);
+        });
     }
 
     onContactFormSuccess(event, user) {

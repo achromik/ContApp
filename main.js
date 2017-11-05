@@ -50,6 +50,26 @@ const templateMenu = [
 		]
 	},
 	{
+		label: 'Extras',
+		submenu: [
+			{
+				label: 'Import from vCard',
+				accelerator: process.platform === 'darwin'
+				  ? 'Alt+Command+I'
+				  : 'Ctrl+Shift+I',
+				click () {importVCard() }
+				// click () { mainWindow.webContents.toggleDevTools() }
+			},
+			{
+				label: 'Export to vCard',
+				accelerator: process.platform === 'darwin'
+				  ? 'Alt+Command+E'
+				  : 'Ctrl+Shift+E',
+				click () {console.log('export') }
+			}
+		]
+	},
+	{
 		label: 'Developer',
 		submenu: [
 			{
@@ -185,6 +205,18 @@ function showAbout() {
 	})
 }
 
+function importVCard () {
+	const files = dialog.showOpenDialog(mainWindow, {
+		properties: ['openFile'],
+		defaultPath: __dirname + '/example/'
+	})
+
+	if (!files) return
+	const file = files[0]
+	const vCard = fs.readFileSync(file)
+
+	mainWindow.webContents.send('import-vcard', vCard)
+}
 
 exports.saveAsFile = saveAsFile;
 exports.saveFile = saveFile;
