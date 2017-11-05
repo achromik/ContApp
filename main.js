@@ -180,7 +180,7 @@ function saveAsFile (content) {
 function showAbout() {
 	let child = new BrowserWindow({
 		parent: mainWindow, 
-		modal: false, 
+		modal: process.platform === 'darwin' ? false : true,
 		show: false, 
 		menu: false,  
 		minHeight: 380, 
@@ -189,6 +189,7 @@ function showAbout() {
 		width: 615, 
 		minimizable: false,
 		maximizable: false,
+		closable: true,
 		movable: false,
 		titleBarStyle: 'hiddenInset',
 		center: 'true',

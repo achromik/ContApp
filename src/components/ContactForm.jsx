@@ -80,7 +80,7 @@ class ContactForm extends React.Component {
                                 placeholder = "+12 123 123 123 or 32-456-27-89 or 1234567890"
                             />
                         </div>
-                        <button className = "btn btn-success" 
+                        <button className = "d-flex mx-auto btn btn-success" 
                             onClick = {(event) => this.onSuccessHandler(event)} 
                             disabled = {this.state.isSubmitDisabled}
                             
