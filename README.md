@@ -5,15 +5,14 @@
 Based on Electron [Electon Quick Start](https://github.com/electron/electron-quick-start), React, Bootstrap v4
 
 Features:
-- add contacts
-- edit contact
-- delete contact
-- read/write contacts list from file
-- add menu bar with option 'Open file', 'Save file' and 'Save file as...'
-
-Todo:
-- sort contacts
-- export/inport vCard
+- [x] add contacts
+- [x] edit contact
+- [x] delete contact
+- [x] read/write contacts list from file
+- [x] add menu bar with option 'Open file', 'Save file' and 'Save file as...'
+- [ ] sort contacts
+- [ ] export to vCard file
+- [x] import from  vCard file
 
 
 ## To Use
