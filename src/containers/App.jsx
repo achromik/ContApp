@@ -1,6 +1,10 @@
 import React from 'react';
 import ContactForm from '../components/ContactForm';
 import ContactList from '../components/ContactList';
+import uuidv1 from 'uuid/v1'
+
+const VCard = require('vcard-json'); 
+
 
 const fs = require('fs');
 const path = require('path');
@@ -47,7 +51,27 @@ class App extends React.Component {
         })
 
         ipc.on('import-vcard', (event, vCard) => {
-            console.log(vCard.stringify);
+            let importedContacts;
+            let contacts = this.state.contactsList;
+            VCard.parseVcardString(vCard.toString(), (err, data) => {
+               if(err) {
+                   console.error('Something gone wrong whit parsing vCard: ' + err)
+               } else {
+                   importedContacts = data;
+               }
+            });
+            importedContacts.map((user, id) => {
+                let contact = {
+                    id: uuidv1(),
+                    name: user.fullname.split(' ')[0],
+                    surname: user.fullname.split(' ')[1],
+                    phone: user.phone[0].value
+                };
+                contacts.push(contact);
+            });
+            this.setState({
+                contactsList: contacts
+            });
         });
     }
 
