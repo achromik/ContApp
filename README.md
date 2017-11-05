@@ -6,12 +6,12 @@ Based on Electron [Electon Quick Start](https://github.com/electron/electron-qui
 
 Features:
 - add contacts
+- edit contact
 - delete contact
 - read/write contacts list from file
-- add menu bar with option 'Open file' and 'Save file as...'
+- add menu bar with option 'Open file', 'Save file' and 'Save file as...'
 
 Todo:
-- edit contact
 - sort contacts
 - export/inport vCard
 
