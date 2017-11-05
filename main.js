@@ -180,13 +180,16 @@ function saveAsFile (content) {
 function showAbout() {
 	let child = new BrowserWindow({
 		parent: mainWindow, 
-		modal: true, 
+		modal: false, 
 		show: false, 
 		menu: false,  
 		minHeight: 380, 
 		height: 380, 
 		minWidth: 615, 
 		width: 615, 
+		minimizable: false,
+		maximizable: false,
+		movable: false,
 		titleBarStyle: 'hiddenInset',
 		center: 'true',
 		icon: './src/icon/icon.png'
