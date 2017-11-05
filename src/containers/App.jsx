@@ -42,8 +42,10 @@ class App extends React.Component {
 
         ipc.on('save-file', (event) => {
             const contacts = JSON.stringify(this.state.contactsList, null, '\t')
+            console.log(filePath);
             if(fs.existsSync(filePath)) {
-                fs.writeSync(filePath, contacts); 
+                console.log(filePath);
+                fs.writeFileSync(filePath, contacts); 
             } else{             
                 mainProcess.saveAsFile(contacts)
             }	
