@@ -90,8 +90,7 @@ const templateMenu = [
 	}
 ]
 
-const menu = Menu.buildFromTemplate(templateMenu);
-Menu.setApplicationMenu(menu);
+
 
 function createWindow () {
 	// Create the browser window.
@@ -116,6 +115,9 @@ function createWindow () {
 		// when you should delete the corresponding element.
 		mainWindow = null
 	});  
+
+	const menu = Menu.buildFromTemplate(templateMenu);
+	Menu.setApplicationMenu(menu);
 }
 
 // This method will be called when Electron has finished
