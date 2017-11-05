@@ -44,7 +44,7 @@ body {
     margin-right: 10px;
 }
 
-.list-group-item {
+.opacity-75 {
     opacity: .75;
 }
 
@@ -69,4 +69,15 @@ body {
                                         from(#666),
                                         to(#333),
                                         color-stop(.6,#aaa));
+}
+.w-30 {
+    width: 30%!important;
+}
+
+.button {
+    transition: all .25s ease-in;
+}
+
+.button:hover {
+    transform: scale(1.4);
 }

@@ -27,9 +27,15 @@ const templateMenu = [
 				}
 			},
 			{
-				label: 'Save file as ...',
+				label: 'Save file',
 				accelerator: 'CommandOrControl+S',
-				click () { mainWindow.webContents.send('save-file')}
+				click() { mainWindow.webContents.send('save-file')}
+
+			},
+			{
+				label: 'Save as...',
+				accelerator: 'CommandOrControl+Shift+S',
+				click () { mainWindow.webContents.send('save-as-file')}
 			},
 			{
 				type: 'separator'
@@ -69,7 +75,7 @@ Menu.setApplicationMenu(menu);
 
 function createWindow () {
 	// Create the browser window.
-	mainWindow = new BrowserWindow({width: 970, height: 600, minHeight: 600, minWidth: 800, backgroundColor: '#2e2c29'})
+	mainWindow = new BrowserWindow({width: 970, height: 600, minHeight: 600, minWidth: 800, backgroundColor: '#2e2c29', icon: './src/icon/icon.png'})
 
 	//mainWindow.setMenu();
 
@@ -133,12 +139,21 @@ function openFile () {
 function saveAsFile (content) {
 	const fileName = dialog.showSaveDialog(mainWindow, {
 		title: 'Save Contacts List',
-		defaultPath: app.getPath('documents'),
+		//defaultPath: app.getPath(__dirname),
+		defaultPath: __dirname,
 	})
 
 		if(!fileName) return
 	 
 		fs.writeFileSync(fileName, content)
+}
+
+function saveFile(fileName, content) {
+	if(fs.exists(fileName)) {
+		fs.writeSync(fileName, content); 
+	} else{
+		saveAsFile(content);
+	}	
 }
 
 function showAbout() {
@@ -148,12 +163,13 @@ function showAbout() {
 		modal: true, 
 		show: false, 
 		menu: false,  
-		minHeight: 350, 
-		height: 350, 
-		minWidth: 560, 
-		width: 560, 
+		minHeight: 380, 
+		height: 380, 
+		minWidth: 615, 
+		width: 615, 
 		titleBarStyle: 'hiddenInset',
-		center: 'true'
+		center: 'true',
+		icon: './src/icon/icon.png'
 	})
 
 	child.setMenu(null)
@@ -170,4 +186,5 @@ function showAbout() {
 }
 
 
-exports.saveAsFile = saveAsFile
+exports.saveAsFile = saveAsFile;
+exports.saveFile = saveFile;

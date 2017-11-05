@@ -2,9 +2,31 @@ import React from 'react';
 import Contact from './Contact';
 
 class ContactList extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            editItemIndex: -1
+        }
+        this.handleSelectItemEdit = this.handleSelectItemEdit.bind(this);
+    }
+
+    handleSelectItemEdit(id) {
+        console.log(id);
+        this.setState({editItemIndex: id});
+    }
 
     render() { 
-        const contacts = this.props.users.map((user, id) => <Contact removeContact={this.props.removeContact} id={id} key={id} user={user} />);
+        const contacts = this.props.users.map((user, id) => (
+            <Contact 
+                removeContact={this.props.removeContact} 
+                editContact ={ this.props.editContact}
+                id={id} 
+                key={id} 
+                user={user} 
+                isEditItem = {this.state.editItemIndex === user.id ? true : false  }
+                handleSelectItemEdit = {this.handleSelectItemEdit}
+            />
+        ));
         return (
             <div className="contact-list">
                 <h2 className="text-center">Contact list</h2>
