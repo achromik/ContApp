@@ -21,7 +21,7 @@ To clone and run this repository you'll need [Git](https://git-scm.com) and [Nod
 
 ```bash
 # Clone this repository
-git clonehttps://github.com/achromik/ContApp.git
+git clone https://github.com/achromik/ContApp.git
 
 # Go into the repository
 cd ContApp
