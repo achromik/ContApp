@@ -44,14 +44,12 @@ class App extends React.Component {
 
         //simulate modal behavior on macOS
         ipc.on('show-about', (event) => {
-            console.log('show modal: ', event.value);
             this.setState({
                 isModalShow: true
             })
         })
         
         ipc.on('hide-about', (event) => {
-            console.log('show modal: ', event);
             this.setState({
                 isModalShow: false
             })
