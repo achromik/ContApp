@@ -189,6 +189,8 @@ function showAbout() {
 		width: 615, 
 		minimizable: false,
 		maximizable: false,
+		resizable: false,
+		fullscreenable: false,
 		closable: true,
 		movable: false,
 		titleBarStyle: 'hiddenInset',
