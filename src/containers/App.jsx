@@ -42,9 +42,9 @@ class App extends React.Component {
 
         ipc.on('save-file', (event) => {
             const contacts = JSON.stringify(this.state.contactsList, null, '\t')
-            console.log(filePath);
+
             if(fs.existsSync(filePath)) {
-                console.log(filePath);
+
                 fs.writeFileSync(filePath, contacts); 
             } else{             
                 mainProcess.saveAsFile(contacts)
@@ -66,12 +66,13 @@ class App extends React.Component {
                    importedContacts = data;
                }
             });
+            // console.log(importedContacts);
             importedContacts.map((user, id) => {
                 let contact = {
                     id: uuidv1(),
                     name: user.fullname.split(' ')[0],
-                    surname: user.fullname.split(' ')[1],
-                    phone: user.phone[0].value
+                    surname: user.fullname.split(' ')[1] ? user.fullname.split(' ')[1] : '',
+                    phone: user.phone[0] ? user.phone[0].value : ''
                 };
                 contacts.push(contact);
             });

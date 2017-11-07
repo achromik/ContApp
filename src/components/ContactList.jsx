@@ -11,7 +11,6 @@ class ContactList extends React.Component {
     }
 
     handleSelectItemEdit(id) {
-        console.log(id);
         this.setState({editItemIndex: id});
     }
 
