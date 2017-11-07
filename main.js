@@ -209,6 +209,16 @@ function showAbout() {
 	child.once('ready-to-show', () => {
 		child.show()
 	})
+
+	/**   modale behavior on macOS*/
+	child.once('show', () => {
+		mainWindow.webContents.send('show-about');
+	})
+
+	child.once('close',() => {
+		mainWindow.webContents.send('hide-about');
+	})
+	/**************************** */
 }
 
 function importVCard () {

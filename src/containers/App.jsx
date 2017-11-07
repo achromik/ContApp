@@ -24,7 +24,8 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            contactsList: []
+            contactsList: [],
+            isModalShow: false
         };
         this.onContactFormSuccess = this.onContactFormSuccess.bind(this);
         this.removeContact = this.removeContact.bind(this);
@@ -39,6 +40,24 @@ class App extends React.Component {
                 contactsList: contacts
             })  
         })
+
+
+        //simulate modal behavior on macOS
+        ipc.on('show-about', (event) => {
+            console.log('show modal: ', event.value);
+            this.setState({
+                isModalShow: true
+            })
+        })
+        
+        ipc.on('hide-about', (event) => {
+            console.log('show modal: ', event);
+            this.setState({
+                isModalShow: false
+            })
+        })
+        //*********************************** */
+
 
         ipc.on('save-file', (event) => {
             const contacts = JSON.stringify(this.state.contactsList, null, '\t')
@@ -143,6 +162,18 @@ class App extends React.Component {
                     removeContact = {this.removeContact} 
                     editContact = {this.editContact}
                 />
+                <div 
+                    style={ this.state.isModalShow ? {
+                        position: 'absolute',
+                        zIndex: 2,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        top: 0 }: null}    
+                >
+                  
+                        
+                </div>
             </div>
         );
     }
