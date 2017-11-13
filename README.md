@@ -1,4 +1,5 @@
 # ContApp
+### Version 0.0.6
 
 *Simply Phone Book for Desktops*
 
@@ -13,6 +14,7 @@ Features:
 - [ ] sort contacts
 - [ ] export to vCard file
 - [x] import from  vCard file
+- [x] show detaild contact's info
 
 
 ## To Use

@@ -1,7 +1,7 @@
 import React from 'react';
 import uuidv1 from 'uuid/v1'
 
-import validatePhoneNumber from './extras';
+import isValidPhoneNumber from './extras';
 
 class ContactForm extends React.Component {
     constructor(props) {
@@ -45,7 +45,7 @@ class ContactForm extends React.Component {
 
     isSubmitDisabled(event) {
         this.setState({
-            isSubmitDisabled: !(this.nameInput.value.trim() !== '' &&  validatePhoneNumber(this.phoneInput.value)) 
+            isSubmitDisabled: !(this.nameInput.value.trim() !== '' &&  isValidPhoneNumber(this.phoneInput.value)) 
         });
     }
 

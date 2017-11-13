@@ -17,6 +17,11 @@ body {
     height: 100%;
 }
 
+#modal-root{
+    position: relative;
+    z-index: 999;
+}
+
 .contact-form {
     flex: 1 0 0%;
 }
@@ -80,4 +85,84 @@ body {
 
 .button:hover {
     transform: scale(1.4);
+}
+
+.Modal {
+    background-color: rgba(210, 210, 210, 0.75);
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .3s;
+}
+
+/*.Modal form,*/
+.Modal fieldset{
+    padding: 30px;
+    background: #6a97a9;
+    border-radius: 4px;
+    box-shadow: 4px 4px 5px 1px grey;
+    height: 400px;
+    width: 660px;
+    background: linear-gradient(0deg,rgba(0, 0, 0, 0.74), rgba(132, 129, 129, 0.78)), url(../img/Purple-Background.jpg) 0% 50% no-repeat;
+    background-size: cover;
+    justify-content: center;
+    animation: showModal .3s;
+    opacity: 1;
+    transition: opacity .2s;
+}
+
+.Modal  input {
+    border: 0;
+    background-color: rgba(0,0,0,0);
+    color: white;
+    border-bottom: 1px solid white;
+    border-radius: 0;
+    text-align: center;
+}
+
+.Modal .form-control:disabled, .form-control[readonly] {
+    background-color: inherit;
+    opacity: 1;
+}
+
+.Modal .form-control:focus[readonly] {
+    background-color: rgba(0,0,0,0);
+    outline: none;
+    box-shadow: none;
+    border-radius: 0;
+    border-color: inherit;
+    color: inherit;
+}
+
+.Modal  input:focus,
+.Modal  input:active {
+    background-color: rgba(224, 235, 255, 0.48);
+    color: black;
+    border-radius: 4px;
+}
+
+
+@keyframes showModal {
+    0% {
+        transform: scale(1);
+        opacity: 0;
+    }
+    1% {
+        transform: scale(.5);
+    }
+    45% {
+        transform: scale(1.05);
+    }
+    80% {
+        transform: scale(.95);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
 }

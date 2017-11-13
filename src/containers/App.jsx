@@ -78,12 +78,11 @@ class App extends React.Component {
             let contacts = this.state.contactsList;
             VCard.parseVcardString(vCard.toString(), (err, data) => {
                if(err) {
-                   console.error('Something gone wrong whit parsing vCard: ' + err)
+                   console.error('Something gone wrong with parsing vCard: ' + err)
                } else {
                    importedContacts = data;
                }
             });
-            // console.log(importedContacts);
             importedContacts.map((user, id) => {
                 let contact = {
                     id: uuidv1(),
@@ -106,24 +105,10 @@ class App extends React.Component {
         this.setState({
             contactsList: contacts
         });
-        // try { 
-        //     fs.writeFileSync(filePath, JSON.stringify(contacts, null, '\t'), 'utf-8'); 
-        // }
-        // catch(e) { 
-        //     alert('Failed to save the file !'); 
-        //     console.error(e);
-        // }
     }
 
     removeContact (id) {
         let remainderContacts = this.state.contactsList.filter((item) => {return item.id !== id});
-        // try { 
-        //     fs.writeFileSync(filePath, JSON.stringify(remainderContacts, null, '\t'), 'utf-8'); 
-        // }
-        // catch(e) { 
-        //     alert('Failed to save the file !'); 
-        //     console.error(e);
-        // }
         this.setState({
             contactsList: remainderContacts
         });
@@ -139,13 +124,6 @@ class App extends React.Component {
             }
             return user;
         });
-        // try { 
-        //     fs.writeFileSync(filePath, JSON.stringify(newContactList, null, '\t'), 'utf-8'); 
-        // }
-        // catch(e) { 
-        //     alert('Failed to save the file !'); 
-        //     console.error(e);
-        // }
         this.setState({
             contactsList: newContactList
         });
@@ -169,8 +147,6 @@ class App extends React.Component {
                         bottom: 0,
                         top: 0 }: null}    
                 >
-                  
-                        
                 </div>
             </div>
         );
