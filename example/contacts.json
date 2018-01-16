@@ -1,38 +1,32 @@
 [
 	{
-		"id": 1,
-		"name": "Al",
-		"surname": "adam",
-		"phone": "12345678"
-	},
-	{
 		"id": 2,
 		"name": "Adam",
 		"surname": "Jan",
-		"phone": "+12 456 789 123"
+		"phone": "+12 456 789 12311"
 	},
 	{
 		"id": 4,
-		"name": "Adam",
-		"surname": "Jan",
-		"phone": "+12 456 789 123"
+		"name": "Jan",
+		"surname": "Nowak",
+		"phone": "+12 456 789 12355"
 	},
 	{
 		"id": "23407b30-bdb8-11e7-a1f5-f3e46d508dd4",
-		"name": "adm",
-		"surname": "1234",
+		"name": "Marke",
+		"surname": "Kowalski",
 		"phone": "+12 456 123 12"
 	},
 	{
 		"id": "23407b30-bdb8-11e7-a1f5-f3e46d508dd3",
-		"name": "adm",
-		"surname": "1234",
-		"phone": "+12 456 123 12"
+		"name": "Anna",
+		"surname": "Wielka",
+		"phone": "+12 456 123 12 77"
 	},
 	{
 		"id": "23407b30-bdb8-11e7-a1f5-f3e46d508dd1",
-		"name": "adm",
-		"surname": "1234",
+		"name": "Monika",
+		"surname": "Wolna",
 		"phone": "+12 456 123 12"
 	},
 	{

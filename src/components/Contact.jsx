@@ -83,7 +83,7 @@ class Contact extends React.Component {
                 <Modal>
                     <ContactDetail 
                         modeEdit={true}
-                        contact={this.state.editedContact}
+                        contact={this.props.user}
                         onChange ={this.handleChange}
                         changedContact={this.changedContact}
                         onCloseModal ={this.handleHideContactEditModal}
